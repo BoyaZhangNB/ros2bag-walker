@@ -1,0 +1,12 @@
+# colcon
+jetson/ros2_ws/build/
+jetson/ros2_ws/install/
+jetson/ros2_ws/log/
+
+# recordings
+*.db3
+*.mcap
+bags/
+
+__pycache__/
+*.pyc

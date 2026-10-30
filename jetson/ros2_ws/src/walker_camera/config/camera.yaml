@@ -1,0 +1,21 @@
+# camera_url and server_host are set from launch arguments; see walker.launch.py.
+camera_node:
+  ros__parameters:
+    codec: h264            # h264 or h265, whatever the camera's stream is set to
+    hw_decode: true        # nvv4l2decoder; set false to decode on the CPU (debugging)
+    latency_ms: 0          # rtspsrc jitter buffer
+    width: 0               # 0 = camera's native resolution
+    height: 0
+    gst_pipeline: ""       # full override, must end in "appsink"
+    frame_id: camera
+    jpeg_quality: 85
+    publish_raw: false     # raw bgr8 is ~6 MB/frame at 1080p; only enable if something needs it
+    publish_compressed: true
+    reconnect_delay_s: 2.0
+
+stream_sender:
+  ros__parameters:
+    server_port: 5600
+    topic: camera/image_raw/compressed
+    max_fps: 0.0           # cap the network stream; the bag always gets every frame
+    reconnect_delay_s: 2.0
